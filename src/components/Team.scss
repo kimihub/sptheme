@@ -1,0 +1,133 @@
+.social {
+  a {
+    border-color: $light-grey;
+    border-style: solid;
+    border-width: 2px;
+    cursor: pointer;
+    display: inline-block;
+    font-weight: 600;
+    letter-spacing: .1rem;
+    margin: 5px;
+    padding: 8px;
+    text-decoration: none;
+    text-transform: uppercase;
+    
+    span {
+      display: inline-block;
+      height: 25px;
+      width: 25px;
+    }
+  }
+
+  .website {
+    a {
+      background-color: transparent;
+      color: $dark-grey;
+      padding: 0;
+      text-decoration: underline;
+
+      &:hover,
+      &:active {
+        color: $dark-grey;
+      }
+    }
+  }
+
+  @mixin social-element($name, $color) {
+    .#{$name} {
+      a {
+        line-height: 25px;
+        height: 25px;
+        span {
+          background: url(../assets/#{$name}.svg) no-repeat;
+        }
+        background-color: $color;
+        &:hover,
+        &:active {
+          border-color: $color;
+        }
+      }
+    }
+  }
+
+  @include social-element('facebook', #3D5A99);
+  @include social-element('deviantart', #05CC47);
+  @include social-element('twitter', #1DA1F2);
+  @include social-element('tumblr', #36465D);
+  @include social-element('instagram', #E4405F);
+  @include social-element('blogger', #F38936);
+  
+}
+
+.team {
+  background-color: $light-grey;
+  padding-top: 1em;
+
+  .team-header {
+    text-align: justify;
+    .heading {
+      color: $primary-color;
+      text-align: center;
+      text-transform: uppercase;
+    }
+  }
+
+  .member {
+    border-bottom-color: lighten($primary-color, 50%);
+    border-bottom-style: solid;
+    border-bottom-width: 1px;
+    float: left;
+    margin-left: 0;
+    margin-bottom: 2em;
+
+    text-align: center;
+
+   .member-avatar {
+      background-color: white;
+      border-color: transparent;
+      border-radius: 50%;
+      border-style: solid;
+      border-width: 1px;
+      padding-bottom: 0.4em;
+      padding-left: 0.4em;
+      padding-right: 0.4em;
+      padding-top: 0.4em;
+    }
+
+    @media (#{$bp-larger-than-mobile}) {
+      text-align: justify;
+      .member-avatar {
+        float: right;
+      }
+    }
+
+    .member-heading {
+      color: $dark-grey;
+      font-weight: bold;
+      text-transform: capitalize;
+    }
+
+    .member-intro {
+
+    }
+
+    .member-social {
+
+      clear: right;
+      text-align: center;
+      ul, li {
+        list-style-type: none;
+        padding: 0;
+      }
+
+      li {
+        display: inline-block;
+        &.website {
+          width: 100%;
+        }
+      }
+
+    }
+  }
+}
+

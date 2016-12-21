@@ -1,0 +1,107 @@
+$header-height: 85px;
+
+.header {
+  background-color: $primary-color;
+  border-bottom: $dark-grey solid 1px;
+  border-top: $dark-grey solid 1px;
+  text-align: center;
+  z-index: 10;
+
+  .container {
+    margin-bottom: 0;
+    margin-top: 0;
+    padding-bottom: 5px;
+    padding-top: 5px;
+
+    .header-logo {
+      background-image: url(../assets/kitsu.png), url(../assets/logo.svg);
+      background-repeat: no-repeat, no-repeat;
+      background-size: 60px, 150px;
+      background-position: 0 40%, 65px 50%; 
+      color: transparent;
+      display: inline-block;
+      font-size: 0;
+      line-height: $header-height;
+      width: 220px;
+
+      @media (#{$bp-larger-than-tablet}) {
+        background-size: 80px, 270px;
+        background-position: 0 30%, 85px 70%;
+        width: 360px;
+      }
+    }
+
+    .header-title {
+      color: lighten($primary-color, 50%);
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+    }
+
+    .header-back {
+      color: $light-grey;
+      &::before {
+        content: "← ";
+      }
+    }
+
+    .with-nav {
+      nav {
+        &::before {
+          position: absolute;
+          background: url(../assets/nav.svg) no-repeat;
+          content: "";
+          color: white;
+          height: 20px;
+          left: 5px;
+          top: 10px;
+          width: 20px;
+        }
+
+        float: none;
+        overflow: hidden;
+
+        a {
+          color: $font-color-light;
+          display: block;
+          line-height: 50px;
+          text-decoration: none;
+          &:active, &:hover {
+            background-color: rgba(255, 255, 255, 0.25);
+            color: $font-color-light;
+          }
+        }
+      }
+    }
+
+    @media (#{$bp-larger-than-tablet}) {
+      .header-back {
+        left: 5px;
+        position: absolute;
+        top: 5px;
+      }
+
+      .with-nav {
+        .header-logo {
+          float: left;   
+        }
+
+        nav {
+          &::before {
+            display: none;
+          }
+          float: right;
+          overflow: auto;
+          position: relative;
+          a {
+            display: inline-block;
+            line-height: $header-height;
+            margin-left: 5px; 
+            padding-left: 25px; 
+            padding-right: 25px; 
+          }
+        }
+
+      }
+    }
+  }
+}

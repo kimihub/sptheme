@@ -1,0 +1,55 @@
+.home {
+	text-align: center;
+	padding: 25px 0;
+
+	.home-title {
+		text-transform: uppercase;
+	}
+
+	hr, .button {
+		clear: both;
+	}
+
+	.production {
+		
+		.preview {
+			background-color: transparent, rgba($primary-color, 0.6);
+			background-repeat: no-repeat;
+			background-size: 100%;
+			background-position-y: top;
+			background-position-x: center;
+			display: inline-block;
+			height: 170px;
+			margin-bottom: 20px;
+			max-width: 240px;
+			width: 100%;
+
+			@media (#{$bp-larger-than-tablet}) {
+				height: 245px;
+				max-width: 340px;
+			}
+		}
+
+		
+
+		&.figurines .preview {
+			background-image: url(../assets/figurines.jpg);
+		}
+
+		&.artbooks .preview {
+			background-image: url(../assets/artbooks.jpg);
+		}
+
+		&.fanzines .preview {
+			background-image: url(../assets/fanzines.jpg);
+		}
+
+		h5 {
+			color: $primary-color;
+		}
+
+		p {
+			text-align: justify;
+		}
+	}
+}
