@@ -1,0 +1,27 @@
+{
+	"name": "text",
+	"href": "$type",
+	"_type": "url, email",
+	"_": [
+		{
+			"name": "Boutique",
+			"href": "http://fr.dawanda.com/shop/nemesis",
+			"type": "url"
+		},
+		{
+			"name": "Facebook",
+			"href": "https://www.facebook.com/pages/N%C3%A9m%C3%A9sis/210849172276805",
+			"type": "url"
+		},
+		{
+			"name": "DeviantArt",
+			"href": "http://fanzine-nemesis.deviantart.com",
+			"type": "url"
+		},
+		{
+			"name": "Contact",
+			"href": "studio.nemesis@gmail.com",
+			"type": "email"
+		}
+	] 
+}

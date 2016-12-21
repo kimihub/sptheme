@@ -1,0 +1,17 @@
+{
+	"image": "image-300x150",
+	"name": "text",
+	"description":"text",
+	"_": [
+		{
+			"image": "figurine-john-snow.jpg",
+			"name": "John Snow",
+			"description": "Némésis, c'est aussi des figurines GoT entièrement réalisées par notre équipe. Notre figurine Jon Snow numérotée à été réalisée sous la plume de Tiamate, sculptée, moulée en résine et peinte à la main après son financement Ulule remporté haut la main !"
+		},
+		{
+			"image": "figurine-daeneris.jpg",
+			"name": "Daenerys Targaryen (à venir)",
+			"description": "Toujours en cours et toujours réalisée par Tiamate, cette nouvelle figurine met à l'honneur la mère des dragons. En résine peinte à la main, ce sont les fans qui ont votés pour leur design préféré, et qui continueront à l'inspirer !"
+		}
+	]
+}
