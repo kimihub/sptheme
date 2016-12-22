@@ -10140,7 +10140,6 @@
 	      fetch('/datas/' + (type.charAt(0).toUpperCase() + type.slice(1)) + '.json').then(function (res) {
 	        return res.json();
 	      }).then(function (json) {
-	        console.log(json._);
 	        _this2.setState({ items: json._ });
 	      }).catch(function (err) {
 	        console.log('fetch error', err);

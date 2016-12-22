@@ -36,7 +36,6 @@ export default class Fanzines extends Component {
         return res.json();
       })
       .then(json => {
-        console.log(json._);
         this.setState({items: json._});
       })
       .catch(err => {
