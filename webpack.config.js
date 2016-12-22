@@ -7,7 +7,8 @@ const PAGE = process.env.PAGE || 'index'
 let config = {
   target: 'web',
   entry: [
-    'whatwg-fetch',
+    'babel-polyfill', // ES6 Promises for all browsers <= to IE11, FF27, Safari7, Chrome32, Opera19, Old mobiles)
+    'whatwg-fetch', // Fetch API for all browsers <= EDGE 13, IE11, Safari10, FF38, Chrome40, Opera26, Mobile browsers
     './src/skeleton/' + PAGE,
     './src/renderers/' + PAGE
   ],
