@@ -774,17 +774,6 @@ form {
   text-decoration: none;
 }
 
-.header .container :root .header-logo {
-  background-image: none;
-}
-
-.header .container :root .header-logo .access-text {
-  color: #fff;
-  margin-left: 0;
-  text-transform: uppercase;
-  text-decoration: none;
-}
-
 .header .container .header-title {
   color: #bfbed1;
   letter-spacing: 0.15em;

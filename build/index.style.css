@@ -575,16 +575,6 @@ form {
         text-transform: uppercase;
         text-decoration: none;
         vertical-align: middle; }
-    .slideshow .mask :root .slideshow-title {
-      background-image: none;
-      display: table; }
-      .slideshow .mask :root .slideshow-title .access-text {
-        color: #fff;
-        display: table-cell;
-        margin-left: 0;
-        text-transform: uppercase;
-        text-decoration: none;
-        vertical-align: middle; }
   .slideshow .slide {
     background-position: center center;
     background-repeat: no-repeat;

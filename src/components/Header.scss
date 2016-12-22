@@ -53,10 +53,6 @@ $header-height: 85px;
     #{$hackFF}.header-logo {
       @include hackHeader;
     }
-
-    #{$hackIE}.header-logo {
-      @include hackHeader;
-    }
   
     .header-title {
       color: lighten($primary-color, 50%);
