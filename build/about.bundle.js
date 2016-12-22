@@ -10014,9 +10014,17 @@
 	          'div',
 	          { className: 'container' },
 	          (0, _preact.h)(
-	            'a',
-	            { className: 'header-logo', href: '/', title: 'Studio-N\xE9m\xE9sis' },
-	            'Studio-n\xE9m\xE9sis'
+	            'h1',
+	            null,
+	            (0, _preact.h)(
+	              'a',
+	              { className: 'header-logo', href: '/', title: 'Studio N\xE9m\xE9sis' },
+	              (0, _preact.h)(
+	                'span',
+	                { className: 'access-text' },
+	                'Studio N\xE9m\xE9sis'
+	              )
+	            )
 	          ),
 	          this.displayNav(),
 	          this.displayTitle(),

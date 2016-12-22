@@ -11,7 +11,7 @@
     height: 500px;
   }
   
-  .cover {
+  .mask {
     background-color: rgba($primary-color, 0.6);
     height: 100%;
     position: absolute;
@@ -20,8 +20,12 @@
     width: 100%;
     z-index: 6;
 
+    h1 {
+      margin: 0 !important;
+      padding: 0 !important;
+    }
+
     .slideshow-title {
-      color: $light-grey;
       background-image: url(../assets/kitsu.png), url(../assets/logo.svg);
       background-repeat: no-repeat, no-repeat;
       background-size: 160px, 75%;
@@ -31,10 +35,37 @@
         background-position: center 35%, center 65%; 
       }
       display: inline-block;
-      font-weight: bold;
       height: 100%;
+      text-decoration: none;
       width: 100%;
+
+      .access-text {
+        margin-left: -999999px;
+        position: relative;
+      }
     }
+
+    @mixin hackSlideshow {
+      background-image: none;
+      display: table;
+      .access-text {
+        color: $font-color-light;
+        display: table-cell;
+        margin-left: 0;
+        text-transform: uppercase;
+        text-decoration: none;
+        vertical-align: middle;
+      }
+    }
+    
+    #{$hackFF}.slideshow-title {
+      @include hackSlideshow;
+    }
+
+    #{$hackIE}.slideshow-title {
+      @include hackSlideshow;
+    }
+  
   }
 
   .slide {

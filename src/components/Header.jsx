@@ -47,7 +47,7 @@ export default class Header extends Component {
     return (
     	<section className={'header' + (this.props.nav? ' with-nav':'')}>
         <div className="container">
-          <a className="header-logo" href="/" title="Studio-Némésis">Studio-némésis</a>
+          <h1><a className="header-logo" href="/" title="Studio Némésis"><span className="access-text">Studio Némésis</span></a></h1>
           {this.displayNav()}
           {this.displayTitle()}
           {this.displayBack()}

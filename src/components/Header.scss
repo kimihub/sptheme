@@ -13,16 +13,25 @@ $header-height: 85px;
     padding-bottom: 5px;
     padding-top: 5px;
 
+    h1 {
+      margin: 0 !important;
+      padding: 0 !important;
+    }
+
     .header-logo {
       background-image: url(../assets/kitsu.png), url(../assets/logo.svg);
       background-repeat: no-repeat, no-repeat;
       background-size: 60px, 150px;
       background-position: 0 40%, 65px 50%; 
-      color: transparent;
-      display: inline-block;
-      font-size: 0;
-      line-height: $header-height;
+      display: inline-block;      
+      height: $header-height;
+      text-decoration: none;
       width: 220px;
+
+      .access-text {
+        margin-left: -999999px;
+        position: relative;
+      }
 
       @media (#{$bp-larger-than-tablet}) {
         background-size: 80px, 270px;
@@ -31,6 +40,24 @@ $header-height: 85px;
       }
     }
 
+    @mixin hackHeader {
+      background-image: none;
+      .access-text {
+        color: $font-color-light;
+        margin-left: 0;
+        text-transform: uppercase;
+        text-decoration: none;
+      }
+    }
+    
+    #{$hackFF}.header-logo {
+      @include hackHeader;
+    }
+
+    #{$hackIE}.header-logo {
+      @include hackHeader;
+    }
+  
     .header-title {
       color: lighten($primary-color, 50%);
       letter-spacing: 0.15em;

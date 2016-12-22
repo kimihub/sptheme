@@ -10134,8 +10134,16 @@
 	        { className: 'slideshow' },
 	        (0, _preact.h)(
 	          'div',
-	          { className: 'cover' },
-	          (0, _preact.h)('h3', { className: 'container slideshow-title' })
+	          { className: 'mask' },
+	          (0, _preact.h)(
+	            'h1',
+	            { className: 'slideshow-title' },
+	            (0, _preact.h)(
+	              'span',
+	              { className: 'access-text' },
+	              'Studio N\xE9m\xE9sis'
+	            )
+	          )
 	        ),
 	        this.state.slides.map(function (slide, i) {
 	          return (0, _preact.h)('div', { key: i, className: 'u-full-width slide', style: { backgroundImage: 'url(/medias/slideshow/' + slide + ')' } });

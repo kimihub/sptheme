@@ -32,3 +32,7 @@ $column-margin: 4% !default; // space between columns
 
 // Misc
 $global-radius: 4px !default;
+
+// CSS Hack for accessibility old browsers : Internet Explorer < 9 and Firefox < 4
+$hackFF: '_:not(), '; // FF 3.6-
+$hackIE: ':root '; // IE 8-

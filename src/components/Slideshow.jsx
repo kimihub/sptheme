@@ -29,8 +29,8 @@ export default class Slideshow extends Component {
   render () {
     return (
     	<section className="slideshow">
-        <div className="cover">
-          <h3 className="container slideshow-title"></h3>
+        <div className="mask">
+          <h1 className="slideshow-title"><span className="access-text">Studio Némésis</span></h1>
         </div>
         {this.state.slides.map((slide, i) => (
           <div key={i} className="u-full-width slide" style={{backgroundImage: 'url(/medias/slideshow/' + slide + ')'}}></div>
