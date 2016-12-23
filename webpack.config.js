@@ -39,7 +39,7 @@ let config = {
       },
       { 
         test: /\.scss$/, 
-        loader: ExtractTextPlugin.extract('style-loader', 'css-loader!resolve-url-loader!sass-loader') 
+        loader: ExtractTextPlugin.extract('style-loader', 'css-loader!resolve-url-loader!postcss-loader!sass-loader') 
       }
     ]
   }
