@@ -26,18 +26,6 @@
 @import "../components/Team";
 @import "../components/Footer";
 
-/* Cover Header */
-#main {
-  background-image: url(../assets/about.jpg);
-  background-position: center top;
-  background-repeat: no-repeat;
-  background-size: 100% 250px;
-
-  .header {
-	  background-color: rgba($primary-color, 0.8);
-	}
-}
-
 /* Fetch transitions */
 .content {
 	opacity: 0;

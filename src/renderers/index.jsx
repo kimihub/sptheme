@@ -53,8 +53,8 @@ class Layout extends Component {
 				<div className={`content ${state.contentClassName}`}>
 				{state.intro}
 				{state.home}
-				{state.footer}
 				</div>
+				{state.footer}
 			</div>
 		);
 	}

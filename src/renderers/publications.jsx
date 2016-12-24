@@ -48,12 +48,14 @@ class Layout extends Component {
 
 	render({}, state) {		
 		return (
-			<div className={`content ${state.contentClassName}`}>
+			<div>
 				<Header title="Publications" back={{href: '/', text: 'Retour à l\'accueil'}} />
+				<div className={`content ${state.contentClassName}`}>
 				{state.intro}
 				{state.figurines}
 				{state.artbooks}
 				{state.fanzines}
+				</div>
 				{state.footer}
 			</div>
 		);

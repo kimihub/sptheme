@@ -10,7 +10,6 @@ class Layout extends Component {
 	state = {
 		team: h('div'),
 		footer: h('div'),
-		contentClassName: '',
 	};
 
 	componentDidMount() {
@@ -32,7 +31,6 @@ class Layout extends Component {
 			}).then(json => {
 				this.setState({
 					team: <Team metas={json} />,
-					contentClassName: 'show',
 				});
 			}).catch(err => {
 				console('error', err);
@@ -40,8 +38,8 @@ class Layout extends Component {
 	}
 	render({}, state) {		
 		return (
-			<div className={`content ${state.contentClassName}`}>
-				<Header title="À propos" back={{href: '/', text: 'Retour à l\'accueil'}} />
+			<div>
+				<Header cover="about.jpg" title="À propos" back={{href: '/', text: 'Retour à l\'accueil'}} />
 				{state.team}
 				{state.footer}
 			</div>
