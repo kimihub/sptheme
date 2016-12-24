@@ -39,7 +39,7 @@ let config = {
       },
       { 
         test: /\.scss$/, 
-        loader: ExtractTextPlugin.extract('style-loader', 'css-loader!resolve-url-loader!postcss-loader!sass-loader') 
+        loader: ExtractTextPlugin.extract('style-loader', 'css-loader?-autoprefixer!resolve-url-loader!postcss-loader!sass-loader') 
       }
     ]
   }
@@ -99,7 +99,7 @@ else {
         useShortDoctype: true
       }
     }),
-    new ExtractTextPlugin(PAGE + '.style.css')
+    new ExtractTextPlugin(PAGE + '.style.css'),
   ]
 
 }
