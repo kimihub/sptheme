@@ -7,6 +7,16 @@ $header-height: 85px;
   text-align: center;
   z-index: 10;
 
+  &.cover {
+    background-position: center top;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+
+  .mask { 
+    background-color: rgba($primary-color, 0.6);
+  }
+
   .container {
     margin-bottom: 0;
     margin-top: 0;
@@ -67,63 +77,11 @@ $header-height: 85px;
       }
     }
 
-    .with-nav {
-      nav {
-        &::before {
-          position: absolute;
-          //background: url(../assets/nav.svg) no-repeat;
-          content: "";
-          color: white;
-          height: 20px;
-          left: 5px;
-          top: 10px;
-          width: 20px;
-        }
-
-        float: none;
-        overflow: hidden;
-
-        a {
-          color: $font-color-light;
-          display: block;
-          line-height: 50px;
-          text-decoration: none;
-          &:active, &:hover {
-            background-color: rgba(255, 255, 255, 0.25);
-            color: $font-color-light;
-          }
-        }
-      }
-    }
-
     @media (#{$bp-larger-than-tablet}) {
       .header-back {
         left: 5px;
         position: absolute;
         top: 5px;
-      }
-
-      .with-nav {
-        .header-logo {
-          float: left;   
-        }
-
-        nav {
-          &::before {
-            display: none;
-          }
-          float: right;
-          overflow: auto;
-          position: relative;
-          a {
-            display: inline-block;
-            line-height: $header-height;
-            margin-left: 5px; 
-            padding-left: 25px; 
-            padding-right: 25px; 
-          }
-        }
-
       }
     }
   }
