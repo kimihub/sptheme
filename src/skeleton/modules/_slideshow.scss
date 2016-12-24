@@ -1,0 +1,53 @@
+// https://snook.ca/archives/html_and_css/simplest-css-slideshow
+
+// @param $container-selector
+// @param $slide-selector
+// @param $num - The number of images
+// @param $fade - The length of the fade
+// @param $visible - The length of time it’s visible
+// @param $iteration - The number of iteration
+
+@mixin slideshow ($container-selector, $slide-selector, $num: 1, $fade: 1, $visible: 2, $iteration: infinite) {
+  
+  #{$container-selector} {
+    
+    #{$slide-selector} {
+      // Animation iteration
+      animation-iteration-count: $iteration;
+
+      // Animation duration
+      // (fade-in + visible) × images
+      $duration: ($fade + $visible) * $num;
+      animation-duration: $duration + s;
+
+      // Keyframes rule percentage for 1 second 
+      // 100 ÷ animation duration
+      $a: 100 / $duration;
+      @keyframes fade {
+        0% { opacity: 0; }
+        #{$a * $fade}% { opacity: 1; }
+        #{$a * ($fade + $visible)}% { opacity: 1; }
+        #{$a * ($fade + $visible + $fade)}% { opacity: 0; }
+        100% { opacity: 0; }
+      }
+      animation-name: fade;
+      
+      // Animation delay
+      // (fade-in + visible) × (ordinal position − 1)
+      @for $i from 1 through $num {
+        $delay: (#{($fade + $visible) * ($i - 1)});
+        &:nth-child(#{$i}) {
+          animation-delay: $delay + s;
+        }
+      }
+
+      // Other styles
+      left: 0;
+      position: absolute;
+      top: 0;
+    }
+    
+    @content;
+
+  }
+}
