@@ -7,13 +7,11 @@ import Footer from '../components/Footer';
 
 class Layout extends Component {
 	
-	constructor() {
-		super();
-		this.state = {
-			team: h('div'),
-			footer: h('div'),
-		};
-	}
+	state = {
+		team: h('div'),
+		footer: h('div'),
+		contentClassName: '',
+	};
 
 	componentDidMount() {
 		fetch('/datas/Links.json')
@@ -34,6 +32,7 @@ class Layout extends Component {
 			}).then(json => {
 				this.setState({
 					team: <Team metas={json} />,
+					contentClassName: 'show',
 				});
 			}).catch(err => {
 				console('error', err);
@@ -41,7 +40,7 @@ class Layout extends Component {
 	}
 	render({}, state) {		
 		return (
-			<div>
+			<div className={`content ${state.contentClassName}`}>
 				<Header title="À propos" back={{href: '/', text: 'Retour à l\'accueil'}} />
 				{state.team}
 				{state.footer}

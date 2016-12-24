@@ -8,16 +8,14 @@ import Footer from '../components/Footer';
 
 class Layout extends Component {
 
-	constructor() {
-		super();
-		this.state = {
-			intro: h('div'),
-			figurines: h('div'),
-			artbooks: h('div'),
-			fanzines: h('div'),
-			footer: h('div'),
-		};
-	}
+	state = {
+		intro: h('div'),
+		figurines: h('div'),
+		artbooks: h('div'),
+		fanzines: h('div'),
+		footer: h('div'),
+		contentClassName: '',
+	};
 
 	componentDidMount() {
 		fetch('/datas/Links.json')
@@ -41,6 +39,7 @@ class Layout extends Component {
 					artbooks: <PublicationsItems type="artbooks" title={json.artbooks_title} subtitle={json.artbooks_subtitle} />,
 					fanzines: <PublicationsItems type="fanzines" title={json.fanzines_title} subtitle={json.fanzines_subtitle} />,
 					intro: <Intro text={json.intro} />,
+					contentClassName: 'show',
 				});
 			}).catch(err => {
 				console('error', err);
@@ -49,7 +48,7 @@ class Layout extends Component {
 
 	render({}, state) {		
 		return (
-			<div>
+			<div className={`content ${state.contentClassName}`}>
 				<Header title="Publications" back={{href: '/', text: 'Retour à l\'accueil'}} />
 				{state.intro}
 				{state.figurines}

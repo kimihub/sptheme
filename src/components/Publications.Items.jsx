@@ -7,7 +7,8 @@ export default class Fanzines extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      items: []
+      items: [],
+      contentClassName: '',
     }
   }
 
@@ -36,16 +37,19 @@ export default class Fanzines extends Component {
         return res.json();
       })
       .then(json => {
-        this.setState({items: json._});
+        this.setState({
+          items: json._,
+          contentClassName: 'show',
+        });
       })
       .catch(err => {
         console.log('fetch error', err);
       });
   }
 
-  render({type, title, subtitle}, {items}) {
+  render({type, title, subtitle}, {items, contentClassName}) {
     return (
-    	<section className={type}>
+    	<section className={`${type} content ${contentClassName}`}>
         <div className="container">
           <div className="row">
             <h4 className="title">{title}</h4>

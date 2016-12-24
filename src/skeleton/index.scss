@@ -27,4 +27,11 @@
 @import "../components/Home";
 @import "../components/Footer";
 
-
+/* Fetch transitions */
+.content {
+	opacity: 0;
+	transition: opacity 2s ease;
+}
+.content.show {
+	opacity: 1;
+}

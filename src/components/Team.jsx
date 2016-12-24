@@ -8,6 +8,7 @@ export default class Team extends Component {
     super(props);
     this.state = {
       members: [],
+      contentClassName: '',
     };
   }
 
@@ -17,7 +18,10 @@ export default class Team extends Component {
         return res.json();
       })
       .then(json => {
-        this.setState({members: json._});
+        this.setState({
+          members: json._,
+          contentClassName: 'show',
+        });
       })
       .catch(err => {
         console.log('fetch error', err);
@@ -33,9 +37,9 @@ export default class Team extends Component {
     }
   }
 
-  render({metas}, {members}) {
+  render({metas}, {members, contentClassName}) {
     return (
-    	<section className="team">
+    	<section className={`team content ${contentClassName}`}>
         <div className="container">
           <header className="team-header">
             <p></p>

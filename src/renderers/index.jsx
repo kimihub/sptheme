@@ -14,6 +14,7 @@ class Layout extends Component {
 			intro: h('div'),
 			home: h('div'),
 			footer: h('div'),
+			contentClassName: '',
 		};
 	}
 
@@ -38,6 +39,7 @@ class Layout extends Component {
 				this.setState({
 					intro: <Intro text={json.intro} link={{name: 'En savoir plus', href: '/about.html'}} />,
 					home: <Home values={json} />,
+					contentClassName: 'show',
 				});
 			}).catch(err => {
 				console('error', err);
@@ -48,9 +50,11 @@ class Layout extends Component {
 		return (
 			<div>
 				<Slideshow />
+				<div className={`content ${state.contentClassName}`}>
 				{state.intro}
 				{state.home}
 				{state.footer}
+				</div>
 			</div>
 		);
 	}

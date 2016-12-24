@@ -37,3 +37,12 @@
 	  background-color: rgba($primary-color, 0.8);
 	}
 }
+
+/* Fetch transitions */
+.content {
+	opacity: 0;
+	transition: opacity 2s ease;
+}
+.content.show {
+	opacity: 1;
+}
