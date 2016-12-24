@@ -7,8 +7,6 @@ const PAGE = process.env.PAGE || 'index'
 let config = {
   target: 'web',
   entry: [
-    'babel-polyfill', // ES6 Promises for all browsers <= to IE11, FF27, Safari7, Chrome32, Opera19, Old mobiles)
-    'whatwg-fetch', // Fetch API for all browsers <= EDGE 13, IE11, Safari10, FF38, Chrome40, Opera26, Mobile browsers
     './src/skeleton/' + PAGE,
     './src/renderers/' + PAGE
   ],
@@ -37,10 +35,6 @@ let config = {
         test: /\.(gif|jpe?g)$/i,
         loader: 'file-loader?name=[name].[ext]?[sha512:hash:base64:7]'
       },
-      { 
-        test: /\.scss$/, 
-        loader: ExtractTextPlugin.extract('style-loader', 'css-loader?-autoprefixer!resolve-url-loader!postcss-loader!sass-loader') 
-      }
     ]
   }
 }
@@ -54,12 +48,21 @@ if (process.env.NODE_ENV === 'development') {
   config.devtool = 'inline-source-map'
   config.devServer =  {
     contentBase: './',
-    historyApiFallback: true,
     hot: true,
     inline: true,
     port: PORT,
     progress: true
   }
+
+  config.module.loaders.push({ 
+    test: /\.scss$/, 
+    loaders: [
+      'style-loader', 
+      'css-loader',
+      'resolve-url-loader',
+      'sass-loader',
+    ]
+  })
 
   config.plugins = [
     new webpack.HotModuleReplacementPlugin(),
@@ -69,21 +72,38 @@ if (process.env.NODE_ENV === 'development') {
     new HtmlWebpackPlugin({
       filename: PAGE + '.html',
       template: './src/templates/' + PAGE,
-      inject: true
+      inject: true,
     }),
-    new ExtractTextPlugin(PAGE + '.style.css', { disable: true })
   ] 
 
 }
 
 else {
 
+  config.entry.unshift('babel-polyfill') // ES6 Promises for all browsers <= to IE11, FF27, Safari7, Chrome32, Opera19, Old mobiles)
+  config.entry.unshift('whatwg-fetch') // Fetch API for all browsers <= EDGE 13, IE11, Safari10, FF38, Chrome40, Opera26, Mobile browsers
+
   config.output.publicPath = '/build/'
   config.devtool = 'cheap-source-map'
 
+  config.module.loaders.push({ 
+    test: /\.scss$/, 
+    loader: ExtractTextPlugin.extract([
+      'css-loader?-autoprefixer',
+      'resolve-url-loader',
+      'postcss-loader',
+      'sass-loader',
+    ])
+  })
+
   config.plugins = [
     new webpack.optimize.OccurrenceOrderPlugin(),
-   
+    new webpack.optimize.UglifyJsPlugin({
+      compressor: {
+        screw_ie8: true,
+        warnings: false
+      }
+    }),
     new HtmlWebpackPlugin({
       filename: '../' + PAGE + '.html',
       template: './src/templates/' + PAGE,
@@ -96,7 +116,7 @@ else {
         removeAttributeQuotes: true,
         removeScriptTypeAttributes: true,
         removeStyleLinkTypeAttributes: true,
-        useShortDoctype: true
+        useShortDoctype: true,
       }
     }),
     new ExtractTextPlugin(PAGE + '.style.css'),
