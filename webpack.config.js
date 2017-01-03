@@ -2,7 +2,7 @@ const path = require('path')
 const webpack = require('webpack')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
-const CompressionPlugin = require("compression-webpack-plugin")
+const CompressionPlugin = require('compression-webpack-plugin')
 const PAGE = process.env.PAGE || 'index'
 
 let config = {
@@ -13,7 +13,7 @@ let config = {
   ],
   output: {
     filename: PAGE + '.bundle.js',
-    path: path.resolve(__dirname, 'build') 
+    path: path.resolve(__dirname, 'dist') 
   },
   resolve: {
     extensions: ['', '.js', '.jsx', '.scss', '.html']
@@ -40,7 +40,7 @@ if (process.env.NODE_ENV === 'development') {
   config.output.publicPath = `http://localhost:${PORT}/`
   config.devtool = 'inline-source-map'
   config.devServer =  {
-    contentBase: './',
+    contentBase: './dist/',
     hot: true,
     port: PORT,
     inline: true,
@@ -80,7 +80,7 @@ else {
   config.entry.unshift('babel-polyfill') // ES6 Promises for all browsers <= to IE11, FF27, Safari7, Chrome32, Opera19, Old mobiles)
   config.entry.unshift('whatwg-fetch') // Fetch API for all browsers <= EDGE 13, IE11, Safari10, FF38, Chrome40, Opera26, Mobile browsers
 
-  config.output.publicPath = '/build/'
+  config.output.publicPath = '/dist/'
   config.devtool = 'cheap-source-map'
 
   config.module.loaders.push({ 
