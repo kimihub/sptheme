@@ -2,6 +2,7 @@ const path = require('path')
 const webpack = require('webpack')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
+const CompressionPlugin = require("compression-webpack-plugin")
 const PAGE = process.env.PAGE || 'index'
 
 let config = {
@@ -27,14 +28,6 @@ let config = {
           plugins: [ ['transform-react-jsx', { 'pragma':'h' }] ] 
         } 
       },
-      {
-        test: /\.(png|svg)$/i,
-        loader: 'url-loader'
-      },
-      {
-        test: /\.(gif|jpe?g)$/i,
-        loader: 'file-loader?name=[name].[ext]?[sha512:hash:base64:7]'
-      },
     ]
   }
 }
@@ -49,9 +42,8 @@ if (process.env.NODE_ENV === 'development') {
   config.devServer =  {
     contentBase: './',
     hot: true,
-    inline: true,
     port: PORT,
-    progress: true
+    inline: true,
   }
 
   config.module.loaders.push({ 
@@ -62,6 +54,11 @@ if (process.env.NODE_ENV === 'development') {
       'resolve-url-loader',
       'sass-loader',
     ]
+  })
+
+  config.module.loaders.push({
+    test: /\.(png|svg|gif|jpe?g)$/i,
+    loader: 'file-loader?emitFile=false&name=[path][name].[ext]?[hash]',
   })
 
   config.plugins = [
@@ -96,6 +93,16 @@ else {
     ])
   })
 
+  config.module.loaders.push({
+    test: /\.(png|svg)$/i,
+    loader: 'url-loader',
+  })
+
+  config.module.loaders.push({
+    test: /\.(gif|jpe?g)$/i,
+    loader: 'file-loader?name=[name].[ext]?[sha512:hash:base64:7]',
+  })
+
   config.plugins = [
     new webpack.optimize.OccurrenceOrderPlugin(),
     new webpack.optimize.UglifyJsPlugin({
@@ -104,6 +111,13 @@ else {
         warnings: false
       }
     }),
+    new CompressionPlugin({
+        asset: "[path].gz[query]",
+        algorithm: "gzip",
+        test: /\.js$/,
+        threshold: 10240,
+        minRatio: 0.8
+    }),
     new HtmlWebpackPlugin({
       filename: '../' + PAGE + '.html',
       template: './src/templates/' + PAGE,
@@ -111,6 +125,7 @@ else {
       hash: true,
       minify: {
         html5: true,
+        collapseInlineTagWhitespace: true,
         collapseWhitespace: true,
         conservativeCollapse: true,
         removeAttributeQuotes: true,
