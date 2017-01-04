@@ -1,8 +1,8 @@
 const fs = require('fs')
 const path = require('path')
 const textToSVG = require('text-to-svg')
-const input = process.argv[2]? process.argv[2]:false
-const output = process.argv[3]? path.resolve(__dirname, 'src/assets/' + process.argv[3] + '.svg') :false
+const input = process.argv[2]? process.argv[2]:require('./template.config').title
+const output = path.resolve(__dirname, 'src/assets/' + (process.argv[3]? process.argv[3]:'logo') + '.svg')
 const fill = process.env.FILL? process.env.FILL:'white'
 const stroke = process.env.STROKE? process.env.STROKE:'transparent'
 const fontsize = process.env.FONTSIZE? process.env.FONTSIZE:72 

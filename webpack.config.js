@@ -1,5 +1,6 @@
 const path = require('path')
 const webpack = require('webpack')
+const TemplateConfig = require('./template.config')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const CompressionPlugin = require('compression-webpack-plugin')
@@ -62,11 +63,7 @@ if (process.env.NODE_ENV === 'development') {
   }
   config.plugins = [
     new webpack.HotModuleReplacementPlugin(),
-    new HtmlWebpackPlugin({
-      filename: PAGE + '.html',
-      template: './src/templates/' + PAGE,
-      inject: true,
-    }),
+    new HtmlWebpackPlugin(TemplateConfig),
     new ExtractTextPlugin('', {disable:true}),
   ] 
 
@@ -92,22 +89,7 @@ else {
         threshold: 10240,
         minRatio: 0.8
     }),
-    new HtmlWebpackPlugin({
-      filename: PAGE + '.html',
-      template: './src/templates/' + PAGE,
-      inject: true,
-      hash: true,
-      minify: {
-        html5: true,
-        collapseInlineTagWhitespace: true,
-        collapseWhitespace: true,
-        conservativeCollapse: true,
-        removeAttributeQuotes: true,
-        removeScriptTypeAttributes: true,
-        removeStyleLinkTypeAttributes: true,
-        useShortDoctype: true,
-      }
-    }),
+    new HtmlWebpackPlugin(TemplateConfig),
     new ExtractTextPlugin(PAGE + '.style.css'),
   ]
 
