@@ -19,7 +19,7 @@ if (input) {
       console.log(err)
     }
 
-    svg = convert.getSVG(input, options)
+    svg = convert.getSVG(input.toUpperCase(), options)
     
     if (output) {
       fs.writeFileSync(output, svg)
