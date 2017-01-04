@@ -23,7 +23,7 @@ const ScssLoaders = [
 const BabelLoader = {
   loader: 'babel-loader',
   options: { 
-    presets: ['es2015', 'stage-0', { 'modules': false }], 
+    presets: ['es2015', 'stage-0'], 
     plugins: [ ['transform-react-jsx', { 'pragma': 'h' }] ] 
   }
 }
