@@ -11,7 +11,7 @@
     "compression-webpack-plugin": "^0.3.2",
     "connect": "^3.5",
     "css-loader": "^0.25",
-    "extract-text-webpack-plugin": "^1.0",
+    "extract-text-webpack-plugin": "^2.0.0-beta.4",
     "file-loader": "^0.9",
     "html-webpack-plugin": "^2.24",
     "node-sass": "^3.13",
@@ -22,7 +22,7 @@
     "style-loader": "^0.13",
     "text-to-svg": "^3.1",
     "url-loader": "^0.5",
-    "webpack": "^1.13",
+    "webpack": "^2.2.0-rc.3",
     "webpack-dev-server": "^1.16",
     "whatwg-fetch": "^2.0"
   },
@@ -33,7 +33,7 @@
     "svg": "node ./svg.js",
     "test": "node ./server.js",
     "dev": "NODE_ENV=development webpack-dev-server",
-    "build": "NODE_ENV=production webpack"
+    "build": "NODE_ENV=production npm run svg && webpack"
   },
   "browserslist": {
     "development": [

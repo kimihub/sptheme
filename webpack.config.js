@@ -6,6 +6,28 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const CompressionPlugin = require('compression-webpack-plugin')
 const PAGE = process.env.PAGE || 'index'
 
+const ScssLoaders = [
+  'css-loader?-autoprefixer',
+  'resolve-url-loader',
+  {
+    loader: 'postcss-loader',
+    options: {
+      plugins: [
+        require('autoprefixer')
+      ]
+    }
+  },
+  'sass-loader',
+];
+
+const BabelLoader = {
+  loader: 'babel-loader',
+  options: { 
+    presets: ['es2015', 'stage-0', { 'modules': false }], 
+    plugins: [ ['transform-react-jsx', { 'pragma': 'h' }] ] 
+  }
+}
+
 let config = {
   target: 'web',
   entry: [
@@ -17,35 +39,29 @@ let config = {
     path: path.resolve(__dirname, 'dist') 
   },
   resolve: {
-    extensions: ['', '.js', '.jsx', '.scss', '.html']
+    extensions: ['.js', '.jsx', '.scss', '.html']
   },
   module: {
-    loaders: [
+    rules: [
       { 
         test: /\.jsx?$/, 
-        loader: 'babel-loader',
+        use: BabelLoader,
         exclude: /node_modules/,
-        query: { 
-          presets: ['es2015', 'stage-0'], 
-          plugins: [ ['transform-react-jsx', { 'pragma':'h' }] ] 
-        }
       },
         {
         test: /\.(png|svg)$/i,
-        loader: 'url-loader',
+        use: 'url-loader',
       },
       {
         test: /\.(gif|jpe?g)$/i,
-        loader: 'file-loader?name=[name].[ext]?[hash]',
+        use: 'file-loader?name=[name].[ext]?[hash]',
       },
       {
         test: /\.scss$/, 
-        loader: ExtractTextPlugin.extract('style-loader', [
-          'css-loader?-autoprefixer',
-          'resolve-url-loader',
-          'postcss-loader',
-          'sass-loader',
-        ])
+        use: ExtractTextPlugin.extract({
+          fallbackLoader: 'style-loader', 
+          loader: ScssLoaders
+        })
       },
     ]
   }
@@ -64,7 +80,7 @@ if (process.env.NODE_ENV === 'development') {
   config.plugins = [
     new webpack.HotModuleReplacementPlugin(),
     new HtmlWebpackPlugin(TemplateConfig),
-    new ExtractTextPlugin('', {disable:true}),
+    new ExtractTextPlugin({disable:true}),
   ] 
 
 }
@@ -75,8 +91,8 @@ else {
   config.entry.unshift('whatwg-fetch') // Fetch API for all browsers <= EDGE 13, IE11, Safari10, FF38, Chrome40, Opera26, Mobile browsers
   config.devtool = 'cheap-module-source-map'
   config.plugins = [
-    new webpack.optimize.OccurrenceOrderPlugin(),
     new webpack.optimize.UglifyJsPlugin({
+      sourceMap: true,
       compressor: {
         screw_ie8: true,
         warnings: false
@@ -90,7 +106,7 @@ else {
         minRatio: 0.8
     }),
     new HtmlWebpackPlugin(TemplateConfig),
-    new ExtractTextPlugin(PAGE + '.style.css'),
+    new ExtractTextPlugin({filename: PAGE + '.style.css'}),
   ]
 
 }
