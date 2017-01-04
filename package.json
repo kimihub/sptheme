@@ -4,20 +4,23 @@
     "babel-core": "^6.18",
     "babel-loader": "^6.2",
     "babel-plugin-transform-react-jsx": "^6.8",
-    "babel-polyfill": "^6.20",
     "babel-preset-es2015": "^6.18",
     "babel-preset-stage-0": "^6.16",
     "browserslist": "^1.5",
     "compression-webpack-plugin": "^0.3.2",
     "connect": "^3.5",
     "css-loader": "^0.25",
+    "es6-promise": "^4.0.5",
     "extract-text-webpack-plugin": "^1.0",
     "file-loader": "^0.9",
     "html-webpack-plugin": "^2.24",
+    "imports-loader": "^0.7.0",
+    "json-loader": "^0.5.4",
     "node-sass": "^3.13",
     "postcss-loader": "^1.2",
     "resolve-url-loader": "^1.6",
     "sass-loader": "^4.0",
+    "script-loader": "^0.7.0",
     "serve-static": "^1.11",
     "style-loader": "^0.13",
     "text-to-svg": "^3.1",
@@ -30,10 +33,10 @@
     "preact": "^6.4"
   },
   "scripts": {
-    "svg": "node ./svg.js",
-    "test": "node ./server.js",
-    "dev": "NODE_ENV=development webpack-dev-server",
-    "build": "NODE_ENV=production webpack"
+    "svg": "node ./lib/svg.js",
+    "test": "node ./lib/server.js",
+    "dev": "NODE_ENV=development webpack-dev-server --config ./webpack.config.dev.js",
+    "build": "NODE_ENV=production webpack --config ./webpack.config.build.js"
   },
   "browserslist": {
     "development": [
