@@ -6,6 +6,31 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const CompressionPlugin = require('compression-webpack-plugin')
 const PAGE = process.env.PAGE || 'index'
 
+const loaders = [
+  { 
+    test: /\.jsx?$/, 
+    loader: 'babel-loader',
+    exclude: /node_modules/,
+  },
+  {
+    test: /\.(png|svg)$/i,
+    loader: 'url-loader',
+  },
+  {
+    test: /\.(gif|jpe?g)$/i,
+    loader: 'file-loader?name=[name].[ext]?[hash]',
+  },
+  {
+    test: /\.scss$/, 
+    loader: ExtractTextPlugin.extract('style-loader', [
+      'css-loader?-autoprefixer',
+      'resolve-url-loader',
+      'postcss-loader',
+      'sass-loader',
+    ])
+  },
+]
+
 let config = {
   target: 'web',
   entry: [
@@ -20,34 +45,7 @@ let config = {
     extensions: ['', '.js', '.jsx', '.scss', '.html']
   },
   module: {
-    loaders: [
-      { 
-        test: /\.jsx?$/, 
-        loader: 'babel-loader',
-        exclude: /node_modules/,
-        query: { 
-          presets: ['es2015', 'stage-0'], 
-          plugins: [ ['transform-react-jsx', { 'pragma':'h' }] ] 
-        }
-      },
-        {
-        test: /\.(png|svg)$/i,
-        loader: 'url-loader',
-      },
-      {
-        test: /\.(gif|jpe?g)$/i,
-        loader: 'file-loader?name=[name].[ext]?[hash]',
-      },
-      {
-        test: /\.scss$/, 
-        loader: ExtractTextPlugin.extract('style-loader', [
-          'css-loader?-autoprefixer',
-          'resolve-url-loader',
-          'postcss-loader',
-          'sass-loader',
-        ])
-      },
-    ]
+    loaders: loaders
   }
 }
 
