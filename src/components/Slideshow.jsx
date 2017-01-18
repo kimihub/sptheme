@@ -1,6 +1,7 @@
 'use scrict';
 
 import { h, Component } from 'preact';
+import { title } from '../../webpack.config.html'
 
 export default class Slideshow extends Component {
 
@@ -53,7 +54,7 @@ export default class Slideshow extends Component {
         </div>
         {state.slides}
         <div className="mask"></div>
-        <h1 className="slideshow-title"><span className="access-text">Studio Némésis</span></h1>
+        <h1 className="slideshow-title"><span className="access-text">{title}</span></h1>
     	</section>
     );
   }

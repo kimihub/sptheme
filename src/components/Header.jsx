@@ -1,6 +1,7 @@
 'use scrict';
 
 import { h, Component } from 'preact';
+import { title } from '../../webpack.config.html'
 
 export default class Header extends Component {
 
@@ -29,7 +30,7 @@ export default class Header extends Component {
     	<section className="header cover" style={cover?{backgroundImage: `url(/medias/covers/${cover})`}:''}>
         <div className="mask">
           <div className="container">
-            <h1><a className="header-logo" href="/" title="Studio Némésis"><span className="access-text">Studio Némésis</span></a></h1>
+            <h1><a className="header-logo" href="/" title={title}><span className="access-text">{title}</span></a></h1>
             {this.displayTitle()}
             {this.displayBack()}
           </div>
