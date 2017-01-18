@@ -2,7 +2,7 @@
 
 import { h, Component } from 'preact';
 
-export default class Fanzines extends Component {
+export default class Publications extends Component {
 
   constructor(props) {
     super(props);
@@ -49,7 +49,7 @@ export default class Fanzines extends Component {
 
   render({type, title, subtitle}, {items, contentClassName}) {
     return (
-    	<section className={`${type} content ${contentClassName}`}>
+    	<section className={`publications ${type} content ${contentClassName}`}>
         <div className="container">
           <div className="row">
             <h4 className="title">{title}</h4>

@@ -1,50 +1,50 @@
-.artbooks, .fanzines, .figurines {
-	padding-top: 25px;
+.publications {
+  padding-top: 25px;
 
-	.title, .subtitle {
-		text-align: center;
-	}
+  .title, .subtitle {
+    text-align: center;
+  }
 
-	.title {
-		color: $primary-color;
-		text-transform: uppercase;
-	}
+  .title {
+    color: $primary-color;
+    text-transform: uppercase;
+  }
 
-	.items {
-		text-align: center;
-		@media (#{$bp-larger-than-phablet}) {
-			text-align: left;
-		}
-		.item {
-			margin-bottom: 25px;
-			.link {
-				text-align: center;
-			}
-		}
-	}
+  .items {
+    text-align: center;
+    @media (#{$bp-larger-than-phablet}) {
+      text-align: left;
+    }
+    .item {
+      margin-bottom: 25px;
+      .link {
+        text-align: center;
+      }
+    }
+  }
 }
 
 .artbooks, .figurines {
-	.cover {
-		//max-width: 500px;
-		width: 100%;
-	}
+  .cover {
+    //max-width: 500px;
+    width: 100%;
+  }
 }
 
 .artbooks {
-	background-color: $light-grey;
+  background-color: $light-grey;
 }
 
 .fanzines {
-	.cover {
-		max-width: 500px;  
-		width: 240px;
+  .cover {
+    max-width: 500px;  
+    width: 240px;
 
-		@media (#{$bp-larger-than-phablet}) {
-			float: right;
-			padding: 10px 0 10px 20px;
-			width: 35%;
-		}
+    @media (#{$bp-larger-than-phablet}) {
+      float: right;
+      padding: 10px 0 10px 20px;
+      width: 35%;
+    }
 
-	}
+  }
 }
