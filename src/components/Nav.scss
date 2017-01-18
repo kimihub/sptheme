@@ -1,0 +1,75 @@
+$height: 42px;
+nav {
+  color: $light-grey;
+  border-top: 1px solid $dark-grey;
+  height: 0;
+  padding-top: 0;
+  width: 100%;
+  ul {
+    background-color: $primary-color;
+    margin: 0 auto;
+    padding-left: 0;
+    text-align: center;
+
+    li {
+      display: block;
+      list-style-type: none;
+      padding: 3px;
+    }
+
+    @media (#{$bp-larger-than-tablet}) {
+      li {
+        display: inline-block;
+        margin: 10px;
+        padding: 0;
+      }
+    }
+    
+  }
+
+  .toggle {
+    cursor: pointer;
+    background-color: transparent;
+    background-repeat: no-repeat;
+    background-image: url(../assets/toggle.svg);
+    background-size: $height - 12px;
+    background-position: 5px 5px;
+    border-radius: 5px;
+    height: $height - 3px;
+    width: $height - 3px;
+    position: absolute;
+    left: 5px;
+    top: 5px;
+    z-index: 10;
+  }
+
+  &.show {
+    height: auto;
+    .toggle {
+      background-color: lighten($primary-color, 10%);
+    }
+  }
+
+  @media (#{$bp-larger-than-tablet}) {
+    height: $height;
+    .toggle {
+      display: none;
+    }
+  }
+
+  a {
+    color: lighten($primary-color, 40%);
+    display: inline-block;
+    padding: 5px 30px;
+    text-decoration: none;
+    text-transform: uppercase;
+
+    &:hover, &:active {
+      color: $font-color-light;
+    } 
+
+    @media (#{$bp-larger-than-tablet}) {
+      padding: 0;
+    }
+  }
+}

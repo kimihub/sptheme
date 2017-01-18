@@ -2,7 +2,7 @@
 
 import { h, Component } from 'preact';
 
-export default class Footer extends Component {
+export default class Nav extends Component {
 
 	constructor(props) {
 		super(props);
@@ -22,7 +22,7 @@ export default class Footer extends Component {
 
   render({links}) {
     return (
-      <section className="footer">
+      <section className="nav">
       	<div className="space"></div>
       	<div className="fixed">
 	        <div className="container">
