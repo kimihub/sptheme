@@ -13,7 +13,8 @@ class Layout extends Component {
     this.state = {
       intro: h('div'),
       home: h('div'),
-      nav: h('div'),
+      headerNav: h('div'),
+      footerNav: h('div'),
       contentClassName: '',
     };
   }
@@ -25,7 +26,8 @@ class Layout extends Component {
       })
       .then(json => {
         this.setState({
-          nav: <Nav links={json._} />,
+          headerNav: <Nav mobilehide={true} links={json._} />,
+          footerNav: <Nav links={json._} />,
         });
       })
       .catch(err => {
@@ -49,12 +51,13 @@ class Layout extends Component {
   render({}, state) {   
     return (
       <div>
-        {state.nav}
+        {state.headerNav}
         <Slideshow />
         <div className={`content ${state.contentClassName}`}>
         {state.intro}
         {state.home}
         </div>
+        {state.footerNav}
       </div>
     );
   }

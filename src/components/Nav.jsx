@@ -35,11 +35,19 @@ export default class Nav extends Component {
     }
   }
 
-  render({links}, {show}) {
-    return (
-      <nav className={show}>
+  displayToggle() {
+    if (this.props.mobilehide) {
+      return (
         <div className="toggle" onclick={this.handleClick.bind(this)}></div>
-      	<ul className="links">
+      )
+    }
+  }
+
+  render({links, mobilehide}, {show}) {
+    return (
+      <nav className={`${(mobilehide? 'mobilehide':'')} ${show}`}>
+        {this.displayToggle()}
+        <ul className="links">
       		{links.map(link => (
       			<li><a target="_blank" href={this.displayHref(link)}>{link.name}</a></li>
       		))}
