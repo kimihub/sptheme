@@ -1,6 +1,5 @@
 const {OccurrenceOrderPlugin, UglifyJsPlugin} = require('webpack').optimize
 const ConfigBase = require('./webpack.config.base')
-const CompressionPlugin = require('compression-webpack-plugin')
 
 // Polyfills
 ConfigBase.entry = [
@@ -15,14 +14,7 @@ ConfigBase.plugins = ConfigBase.plugins.concat([
       screw_ie8: true,
       warnings: false
     }
-  }),
-  new CompressionPlugin({
-      asset: '[path].gz[query]',
-      algorithm: 'gzip',
-      test: /\.bundle\.js$/,
-      threshold: 10240,
-      minRatio: 0.8
-  }),
+  })
 ])
 
 module.exports = ConfigBase
