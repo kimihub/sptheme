@@ -5,6 +5,8 @@ import { h, render } from 'preact';
 import Index from '../pages/index';
 import About from '../pages/about';
 import Publications from '../pages/publications';
+import Header from '../components/Header';
+import Footer from '../components/Footer';
 import Nav from '../components/Nav';
 import routes from '../../lib/routes';
 
@@ -20,13 +22,17 @@ routes([
 
 const Main = () => (
   <div id="renderer">
-    <Nav links={links} mobilehide={true} />
+    <Header>
+      <Nav links={links} mobilehide={true} />
+    </Header>
     <Router>
       <Index default path={window.routes['/']} />
       <About path={window.routes['/about.html']} />
       <Publications path={window.routes['/publications.html']} />
     </Router>
-    <Nav links={links} />
+    <Footer>
+      <Nav links={links} />
+    </Footer>
   </div>
 );
 

@@ -25,7 +25,14 @@ export default class Header extends Component {
     }
   }
 
-  render({cover}) {
+  render({children, cover}) {
+    if (children.length > 0) {
+      return (
+       <section className="header">
+        {children}
+       </section>
+      )
+    }
     return (
     	<section className="header cover" style={cover?{backgroundImage: `url(${cover}`}:''}>
         <div className="mask">
