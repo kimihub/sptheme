@@ -2,8 +2,8 @@ const path = require('path')
 const url = require('url')
 const http = require('http')
 const fs = require('fs')
-const PORT = process.env.PORT || 8080
-const HOST = process.env.HOST || false
+const PORT = process.env.PORT || process.env.OPENSHIFT_NODEJS_PORT || 8080
+const HOST = process.env.HOST || process.env.OPENSHIFT_NODEJS_IP || false
 
 http.createServer((req, res) => {
 
