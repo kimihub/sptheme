@@ -11,12 +11,18 @@ const rules = [
     exclude: /node_modules/,
   },
   {
-    test: /\.(png|svg)$/i,
-    use: 'url-loader?limit=16000&name=[name].[ext]?[hash]'
+    test: /\.svg$/i,
+    use: [
+      'url-loader?limit=15000&name=[name].[ext]?[hash]',
+      'image-optimize-loader?optimizationLevel=3&progressive=true'
+    ]
   },
   {
-    test: /\.(gif|jpe?g)$/i,
-    use: 'file-loader?name=[name].[ext]?[hash]',
+    test: /\.(png|gif|jpe?g)$/i,
+    use: [
+      'file-loader?name=[name].[ext]?[hash]',
+      'image-optimize-loader?optimizationLevel=3&progressive=true'
+    ]
   },
   {
     test: /\.yml$/,
