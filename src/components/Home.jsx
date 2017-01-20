@@ -24,7 +24,7 @@ export default class Home extends Component {
             </article>
           ))}
 	     		<p>
-            <a onclick={window.scrollTo.bind(null, 0, 0)} href="/publications.html" className="button button-primary">Voir les publications</a>
+            <a onclick={window.scrollTo.bind(null, 0, 0)} href={window.routes['/publications.html']} className="button button-primary">Voir les publications</a>
           </p>
      		</div>
       </section>

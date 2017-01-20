@@ -13,7 +13,7 @@ const slides = requireAll(require.context('../datas/index/slideshow', false, /\.
 module.exports = () => (
   <div class="page">
     <Slideshow slides={slides} />
-    <Intro text={page.intro} link={{name: 'En savoir plus', href: '/about.html'}} />
+    <Intro text={page.intro} link={{name: 'En savoir plus', href: window.routes['/about.html']}} />
     <Home items={publications} title={page.home_title} />
   </div>
 );

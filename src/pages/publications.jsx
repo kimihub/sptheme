@@ -13,7 +13,7 @@ const fanzines = requireAll(require.context('../datas/publications/fanzines', fa
 
 module.exports = () => (
   <div class="page">
-    <Header title="Publications" back={{href: '/', text: 'Retour à l\'accueil'}} />
+    <Header title="Publications" back={{href: window.routes['/'], text: 'Retour à l\'accueil'}} />
     <Intro text={page.intro} />
     <PublicationsItems items={figurines} type="figurines" title={page.figurines_title} subtitle={page.figurines_subtitle} />
     <PublicationsItems items={artbooks} type="artbooks" title={page.artbooks_title} subtitle={page.artbooks_subtitle} />

@@ -10,7 +10,7 @@ const members = requireAll(require.context('../datas/about/team', false, /\.(yml
 
 module.exports = () => (
   <div class="page">
-		<Header cover={page.image} title="À propos" back={{href: '/', text: 'Retour à l\'accueil'}} />
+		<Header cover={page.image} title="À propos" back={{href: window.routes['/'], text: 'Retour à l\'accueil'}} />
 		<Team header={page.header} footer={page.footer} members={members} />
 	</div>
 );
