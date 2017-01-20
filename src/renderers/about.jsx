@@ -16,7 +16,7 @@ class Layout extends Component {
 		return (
 			<div>
         <Nav links={links} mobilehide={true} />
-				<Header cover={page.image} title="À propos" back={{href: '/', text: 'Retour à l\'accueil'}} />
+				<Header cover={page.image} title="À propos" back={{href: 'index.html', text: 'Retour à l\'accueil'}} />
 				<Team header={page.header} footer={page.footer} members={members} />
 				<Nav links={links} />
 			</div>

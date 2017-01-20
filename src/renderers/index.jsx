@@ -19,7 +19,7 @@ class Layout extends Component {
       <div>
         <Nav links={links} mobilehide={true} />
         <Slideshow slides={slides} />
-        <Intro text={page.intro} link={{name: 'En savoir plus', href: '/about.html'}} />
+        <Intro text={page.intro} link={{name: 'En savoir plus', href: 'about.html'}} />
         <Home items={publications} title={page.home_title} />
         <Nav links={links} />
       </div>
