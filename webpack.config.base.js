@@ -1,4 +1,5 @@
 const path = require('path')
+const fs = require('fs')
 const ConfigHtml = require('./webpack.config.html')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
@@ -12,11 +13,18 @@ const loaders = [
   },
   {
     test: /\.(png|svg)$/i,
-    loader: 'url-loader',
+    loader: 'url-loader?limit=25000&name=[name].[ext]?[hash]'
   },
   {
     test: /\.(gif|jpe?g)$/i,
     loader: 'file-loader?name=[name].[ext]?[hash]',
+  },
+  {
+    test: /\.yml$/,
+    loaders: [
+      'json-loader',
+      'yaml-loader',
+    ]
   },
   {
     test: /\.scss$/, 
@@ -40,7 +48,7 @@ module.exports = {
     path: path.resolve(__dirname, 'dist') 
   },
   resolve: {
-    extensions: ['', '.json', '.js', '.jsx', '.scss', '.html']
+    extensions: ['', '.json', '.js', '.jsx', '.scss', '.html', '.yml']
   },
   module: {
     loaders: loaders
@@ -48,5 +56,8 @@ module.exports = {
   plugins: [
     new ExtractTextPlugin(PAGE + '.style.css'),
     new HtmlWebpackPlugin(ConfigHtml),
-  ]
+  ],
+  sassLoader: {
+    data: `$slideshow_num: ${fs.readdirSync(path.resolve(__dirname, 'src/datas/index/slideshow')).length};`
+  }
 }
