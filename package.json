@@ -7,10 +7,8 @@
     "start": "node server.js",
     "svg": "node ./lib/svg.js",
     "dev": "NODE_ENV=development webpack-dev-server --config ./webpack.config.dev.js",
-    "build-index": "NODE_ENV=production webpack --config ./webpack.config.build.js",
-    "build-about": "PAGE=about npm run build-index",
-    "build-publications": "PAGE=publications npm run build-index",
-    "build": "node lib/clean.js; npm run build-index; npm run build-about; npm run build-publications"
+    "clean": "node lib/clean.js",
+    "build": "npm run clean; NODE_ENV=production webpack --config ./webpack.config.build.js"
   },
   "devDependencies": {
     "autoprefixer": "^6.6",
@@ -26,7 +24,8 @@
     "html-webpack-plugin": "^2.26",
     "node-sass": "^4.3",
     "postcss-loader": "^1.2",
-    "preact": "^6.4",
+    "preact": "^7.1.0",
+    "preact-router": "^2.3.2",
     "sass-loader": "^4.1",
     "style-loader": "^0.13",
     "url-loader": "^0.5",

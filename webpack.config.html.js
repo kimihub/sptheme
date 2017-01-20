@@ -1,9 +1,6 @@
-const PAGE = process.env.PAGE || 'index'
-
 module.exports = {
   title: 'Studio Némésis',
-  filename: PAGE + '.html',
-  template: './src/templates/' + PAGE,
+  template: './src/main/template',
   inject: true,
   hash: true,
   minify: {

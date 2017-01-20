@@ -3,7 +3,6 @@ const fs = require('fs')
 const ConfigHtml = require('./webpack.config.html')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
-const PAGE = process.env.PAGE || 'index'
 
 const rules = [
   { 
@@ -31,7 +30,7 @@ const rules = [
     loader: ExtractTextPlugin.extract({
       fallbackLoader: 'style-loader', 
       loader: [
-        'css-loader',
+        'css-loader?-autoprefixer',
         'postcss-loader',
         {
           loader: 'sass-loader',
@@ -44,27 +43,35 @@ const rules = [
   },
 ]
 
+// create an html file for each page
+let PagesPlugins = []
+fs.readdirSync(path.resolve(__dirname, 'src/pages')).forEach(filename => {
+  if (filename.slice(-3) === 'jsx') {
+    ConfigHtml.filename = filename.slice(0, -3) + 'html'
+    PagesPlugins.push(new HtmlWebpackPlugin(ConfigHtml))
+  }
+})
+
 module.exports = {
   target: 'web',
   entry: [
-    './src/skeleton/' + PAGE,
-    './src/renderers/' + PAGE,
+    './src/main/style',
+    './src/main/renderer',
   ],
   output: {
-    filename: PAGE + '.bundle.js',
+    filename: 'bundle.js',
     path: path.resolve(__dirname, 'dist') 
   },
   resolve: {
-    extensions: ['.json', '.js', '.jsx', '.scss', '.html', '.yml']
+    extensions: ['.js', '.jsx', '.scss', '.html']
   },
   module: {
     rules: rules
   },
   plugins: [
     new ExtractTextPlugin({
-      filename: PAGE + '.style.css',
+      filename: 'style.css',
       disable: process.env.NODE_ENV === 'development'
-    }),
-    new HtmlWebpackPlugin(ConfigHtml),
-  ],
+    })
+  ].concat(PagesPlugins),
 }

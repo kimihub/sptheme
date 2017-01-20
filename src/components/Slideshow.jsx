@@ -11,7 +11,7 @@ export default class Slideshow extends Component {
   };
 
   componentDidMount() {
-    let count = 0;
+    let count = 0, slides = [];
     this.props.slides.forEach((slide, i) => {
       let img = new Image();
       let url = slide;
@@ -22,14 +22,14 @@ export default class Slideshow extends Component {
         // last image loaded
         if (count > i) {
           this.setState({
-            slides: this.props.slides,
+            slides: slides,
             spinnerClassName: 'spinner hide',
           })
         }
 
       };
       img.src = url;
-      this.props.slides[i] = <div key={i} className="slide" style={style}></div>;
+      slides[i] = <div key={i} className="slide" style={style}></div>;
     });
   }
 

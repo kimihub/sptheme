@@ -11,18 +11,12 @@ Run it on a specific port (detault 8080)
 		PORT=3000 npm run dev
 
 
-Run it for the about.html page (default index)
-		
-
-		PAGE=about npm run dev
-
-
 ## Build Generator
 
 
 Run
 		
-		(PAGE=index) npm run build
+		npm run build
 
 
 
