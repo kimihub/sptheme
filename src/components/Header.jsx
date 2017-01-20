@@ -27,7 +27,7 @@ export default class Header extends Component {
 
   render({cover}) {
     return (
-    	<section className="header cover" style={cover?{backgroundImage: `url(/medias/covers/${cover})`}:''}>
+    	<section className="header cover" style={cover?{backgroundImage: `url(${cover}`}:''}>
         <div className="mask">
           <div className="container">
             <h1><a className="header-logo" href="/" title={title}><span className="access-text">{title}</span></a></h1>

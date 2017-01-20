@@ -1,55 +1,46 @@
 .home {
-	text-align: center;
-	padding: 25px 0;
+  $max-width: 700px;
+  text-align: center;
+  padding: 25px 0;
 
-	.home-title {
-		text-transform: uppercase;
-	}
+  .home-title {
+    text-transform: uppercase;
+  }
 
-	hr, .button {
-		clear: both;
-	}
+  hr, .button {
+    clear: both;
+  }
 
-	.production {
-		
-		.preview {
-			background-color: transparent, rgba($primary-color, 0.6);
-			background-repeat: no-repeat;
-			background-size: 100%;
-			background-position-y: top;
-			background-position-x: center;
-			display: inline-block;
-			height: 170px;
-			margin-bottom: 20px;
-			max-width: 240px;
-			width: 100%;
+  .production {
+      margin-bottom: 30px;
 
-			@media (#{$bp-larger-than-tablet}) {
-				height: 245px;
-				max-width: 340px;
-			}
-		}
+    .preview {
+      @include box-shadow;
+      max-width: $max-width;
+      width: 100%;
 
-		
+      @media (#{$bp-larger-than-mobile}) {
+        height: 245px;
+        width: auto;
+      }
+      @media (#{$bp-larger-than-desktop}) {
+        width: auto;
+      }
+    }
 
-		&.figurines .preview {
-			background-image: url(../assets/figurines.jpg);
-		}
+    h5 {
+      color: $primary-color;
+    }
 
-		&.artbooks .preview {
-			background-image: url(../assets/artbooks.jpg);
-		}
-
-		&.fanzines .preview {
-			background-image: url(../assets/fanzines.jpg);
-		}
-
-		h5 {
-			color: $primary-color;
-		}
-
-		p {
-			text-align: justify;
-		}
-	}
+    p {
+      display: inline-block;
+      max-width: $max-width;
+      text-align: justify;
+      @media (#{$bp-larger-than-desktop}) {
+        padding: 0 2.5%;
+        vertical-align: text-bottom;
+        width: 50%;
+      }
+    }
+  }
 }

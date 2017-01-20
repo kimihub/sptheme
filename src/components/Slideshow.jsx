@@ -11,21 +11,10 @@ export default class Slideshow extends Component {
   };
 
   componentDidMount() {
-    fetch('/datas/Slideshow.json')
-      .then(res => {
-        return res.json();
-      })
-      .then(this.preloadImages.bind(this))
-      .catch(err => {
-        console.log('error', err);
-      });
-  }
-
-  preloadImages(json) {
     let count = 0;
-    json._.forEach((slide, i) => {
+    this.props.slides.forEach((slide, i) => {
       let img = new Image();
-      let url = '/medias/slideshow/' + slide;
+      let url = slide;
       let style = {backgroundImage: `url(${url})`};
       img.onload = e => {
         count++;
@@ -33,14 +22,14 @@ export default class Slideshow extends Component {
         // last image loaded
         if (count > i) {
           this.setState({
-            slides: json._,
+            slides: this.props.slides,
             spinnerClassName: 'spinner hide',
           })
         }
 
       };
       img.src = url;
-      json._[i] = <div key={i} className="slide" style={style}></div>;
+      this.props.slides[i] = <div key={i} className="slide" style={style}></div>;
     });
   }
 

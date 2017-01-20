@@ -6,60 +6,25 @@ import Intro from '../components/Intro';
 import PublicationsItems from '../components/Publications.Items';
 import Nav from '../components/Nav';
 
+const requireAll = require('../../lib/require-all');
+const page = requireAll(require.context('../datas/publications', false, /\.(yml|gif|png|jpe?g)$/i), true).shift();
+const links = requireAll(require.context('../datas/common/nav', false, /\.yml$/i));
+const artbooks = requireAll(require.context('../datas/publications/artbooks', false, /\.(yml|gif|png|jpe?g)$/i), true);
+const figurines = requireAll(require.context('../datas/publications/figurines', false, /\.(yml|gif|png|jpe?g)$/i), true);
+const fanzines = requireAll(require.context('../datas/publications/fanzines', false, /\.(yml|gif|png|jpe?g)$/i), true);
+
 class Layout extends Component {
-
-  state = {
-    intro: h('div'),
-    figurines: h('div'),
-    artbooks: h('div'),
-    fanzines: h('div'),
-    headerNav: h('div'),
-    footerNav: h('div'),
-    contentClassName: '',
-  };
-
-  componentDidMount() {
-    fetch('/datas/Links.json')
-      .then(res => {
-        return res.json();
-      })
-      .then(json => {
-        this.setState({
-          headerNav: <Nav mobilehide={true} links={json._} />,
-          footerNav: <Nav links={json._} />,
-        });
-      })
-      .catch(err => {
-        console.log('error', err);
-      });
-    fetch('/datas/Page.Publications.json')
-      .then(res => {
-        return res.json();
-      }).then(json => {
-        this.setState({
-          figurines: <PublicationsItems type="figurines" title={json.figurines_title} subtitle={json.figurines_subtitle} />,
-          artbooks: <PublicationsItems type="artbooks" title={json.artbooks_title} subtitle={json.artbooks_subtitle} />,
-          fanzines: <PublicationsItems type="fanzines" title={json.fanzines_title} subtitle={json.fanzines_subtitle} />,
-          intro: <Intro text={json.intro} />,
-          contentClassName: 'show',
-        });
-      }).catch(err => {
-        console('error', err);
-      });
-  }
 
   render({}, state) {   
     return (
       <div>
-        {state.headerNav}
+        <Nav links={links} mobilehide={true} />
         <Header title="Publications" back={{href: '/', text: 'Retour à l\'accueil'}} />
-        <div className={`content ${state.contentClassName}`}>
-        {state.intro}
-        {state.figurines}
-        {state.artbooks}
-        {state.fanzines}
-        </div>
-        {state.footerNav}
+        <Intro text={page.intro} />
+        <PublicationsItems items={figurines} type="figurines" title={page.figurines_title} subtitle={page.figurines_subtitle} />
+        <PublicationsItems items={artbooks} type="artbooks" title={page.artbooks_title} subtitle={page.artbooks_subtitle} />
+        <PublicationsItems items={fanzines} type="fanzines" title={page.fanzines_title} subtitle={page.fanzines_subtitle} />
+        <Nav links={links} />
       </div>
     );
   }

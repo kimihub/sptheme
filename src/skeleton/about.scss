@@ -25,12 +25,3 @@
 @import "../components/Header";
 @import "../components/Team";
 @import "../components/Nav";
-
-/* Fetch transitions */
-.content {
-	opacity: 0;
-	transition: opacity 2s ease;
-}
-.content.show {
-	opacity: 1;
-}

@@ -2,7 +2,7 @@
 @include slideshow (
   $container-selector: '.slideshow',
   $slide-selector: '.slide',
-  $num: 5,
+  $num: $slideshow_num,
   $fade: 1, 
   $visible: 2, 
   $iteration: infinite

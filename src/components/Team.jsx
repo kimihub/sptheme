@@ -6,26 +6,6 @@ export default class Team extends Component {
 
   constructor(props) {
     super(props);
-    this.state = {
-      members: [],
-      contentClassName: '',
-    };
-  }
-
-  componentDidMount() {
-    fetch('/datas/Team.json')
-      .then(res => {
-        return res.json();
-      })
-      .then(json => {
-        this.setState({
-          members: json._,
-          contentClassName: 'show',
-        });
-      })
-      .catch(err => {
-        console.log('fetch error', err);
-      });
   }
 
   displaySocialLink(type, text) {
@@ -37,18 +17,18 @@ export default class Team extends Component {
     }
   }
 
-  render({metas}, {members, contentClassName}) {
+  render({header, footer, members}) {
     return (
-    	<section className={`team content ${contentClassName}`}>
+    	<section className="team">
         <div className="container">
           <header className="team-header">
-            <p></p>
+            <p>{header}</p>
           </header>
           <hr />
           <div className="row">
           {members.map(member => (
             <article className="member">
-              <img className="u-max-full-width member-avatar" src={'/medias/team/' + member.name.toLowerCase().replace(/é|è|ê/gi, "e") + '.png'} />
+            {!member.image? '':<img className="u-max-full-width member-avatar" src={member.image} />}
               <div className="member-heading">
                 <h4>{member.position}</h4>
               </div>
@@ -58,7 +38,7 @@ export default class Team extends Component {
               </div>
               <div className="social member-social">
                 <ul>
-                {Object.keys(member.social).map(prop => (
+                {!member.social? '':Object.keys(member.social).map(prop => (
                   <li className={prop}>
                     <a target="_blank" href={member.social[prop]} title={prop}>{this.displaySocialLink(prop, member.social[prop])}</a>
                   </li>
@@ -68,7 +48,7 @@ export default class Team extends Component {
             </article>
           ))}
           </div>
-          <footer><p>{metas.footer}</p></footer>
+          <footer><p>{footer}</p></footer>
         </div>
     	</section>
     );

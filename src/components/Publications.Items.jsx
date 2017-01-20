@@ -6,10 +6,6 @@ export default class Publications extends Component {
 
   constructor(props) {
     super(props);
-    this.state = {
-      items: [],
-      contentClassName: '',
-    }
   }
 
   displayLink(link) {
@@ -29,27 +25,9 @@ export default class Publications extends Component {
     }
   }
 
-  componentDidMount() {
-    let type = this.props.type;
-
-    fetch(`/datas/${type.charAt(0).toUpperCase() + type.slice(1)}.json`)
-      .then(res => {
-        return res.json();
-      })
-      .then(json => {
-        this.setState({
-          items: json._,
-          contentClassName: 'show',
-        });
-      })
-      .catch(err => {
-        console.log('fetch error', err);
-      });
-  }
-
-  render({type, title, subtitle}, {items, contentClassName}) {
+  render({type, title, subtitle, items}) {
     return (
-    	<section className={`publications ${type} content ${contentClassName}`}>
+    	<section className={`publications ${type}`}>
         <div className="container">
           <div className="row">
             <h4 className="title">{title}</h4>
@@ -58,7 +36,7 @@ export default class Publications extends Component {
             {items.map(i => (
               <article className="item">
                 <hr />
-                <img className="u-max-full-width cover" src={`/medias/${type}/${i.image}`} />
+                {!i.image?'':<img className="u-max-full-width cover" src={i.image} />}
                 <h5>{i.name}</h5>
                 <p>{i.description}</p>
                 {i.link? this.displayLink(i.link):<div></div>}

@@ -6,58 +6,22 @@ import Home from '../components/Home';
 import Intro from '../components/Intro';
 import Nav from '../components/Nav';
 
+const requireAll = require('../../lib/require-all');
+const page = requireAll(require.context('../datas/index', false, /\.(yml|gif|png|jpe?g)$/i), true).shift();
+const links = requireAll(require.context('../datas/common/nav', false, /\.yml$/i));
+const publications = requireAll(require.context('../datas/index/home', false, /\.(yml|gif|png|jpe?g)$/i), true);
+const slides = requireAll(require.context('../datas/index/slideshow', false, /\.(gif|png|jpe?g)$/i));
+
 class Layout extends Component {
 
-  constructor() {
-    super();
-    this.state = {
-      intro: h('div'),
-      home: h('div'),
-      headerNav: h('div'),
-      footerNav: h('div'),
-      contentClassName: '',
-    };
-  }
-
-  componentDidMount() {
-    fetch('/datas/Links.json')
-      .then(res => {
-        return res.json();
-      })
-      .then(json => {
-        this.setState({
-          headerNav: <Nav mobilehide={true} links={json._} />,
-          footerNav: <Nav links={json._} />,
-        });
-      })
-      .catch(err => {
-        console.log('error', err);
-      });
-    
-    fetch('/datas/Page.Index.json')
-      .then(res => {
-        return res.json();
-      }).then(json => {
-        this.setState({
-          intro: <Intro text={json.intro} link={{name: 'En savoir plus', href: '/about.html'}} />,
-          home: <Home values={json} />,
-          contentClassName: 'show',
-        });
-      }).catch(err => {
-        console('error', err);
-      });
-  }
-
-  render({}, state) {   
+  render() {   
     return (
       <div>
-        {state.headerNav}
-        <Slideshow />
-        <div className={`content ${state.contentClassName}`}>
-        {state.intro}
-        {state.home}
-        </div>
-        {state.footerNav}
+        <Nav links={links} mobilehide={true} />
+        <Slideshow slides={slides} />
+        <Intro text={page.intro} link={{name: 'En savoir plus', href: '/about.html'}} />
+        <Home items={publications} title={page.home_title} />
+        <Nav links={links} />
       </div>
     );
   }
