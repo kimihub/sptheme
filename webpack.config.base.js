@@ -5,35 +5,42 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const PAGE = process.env.PAGE || 'index'
 
-const loaders = [
+const rules = [
   { 
     test: /\.jsx?$/, 
-    loader: 'babel-loader',
+    use: 'babel-loader',
     exclude: /node_modules/,
   },
   {
     test: /\.(png|svg)$/i,
-    loader: 'url-loader?limit=25000&name=[name].[ext]?[hash]'
+    use: 'url-loader?limit=16000&name=[name].[ext]?[hash]'
   },
   {
     test: /\.(gif|jpe?g)$/i,
-    loader: 'file-loader?name=[name].[ext]?[hash]',
+    use: 'file-loader?name=[name].[ext]?[hash]',
   },
   {
     test: /\.yml$/,
-    loaders: [
+    use: [
       'json-loader',
       'yaml-loader',
     ]
   },
   {
-    test: /\.scss$/, 
-    loader: ExtractTextPlugin.extract('style-loader', [
-      'css-loader?-autoprefixer',
-      'resolve-url-loader',
-      'postcss-loader',
-      'sass-loader',
-    ])
+    test: /\.scss$/,
+    loader: ExtractTextPlugin.extract({
+      fallbackLoader: 'style-loader', 
+      loader: [
+        'css-loader',
+        'postcss-loader',
+        {
+          loader: 'sass-loader',
+          query: {
+            data: `$slideshow_num: ${fs.readdirSync(path.resolve(__dirname, 'src/datas/index/slideshow')).length};`
+          }
+        }
+      ]
+    })
   },
 ]
 
@@ -48,16 +55,16 @@ module.exports = {
     path: path.resolve(__dirname, 'dist') 
   },
   resolve: {
-    extensions: ['', '.json', '.js', '.jsx', '.scss', '.html', '.yml']
+    extensions: ['.json', '.js', '.jsx', '.scss', '.html', '.yml']
   },
   module: {
-    loaders: loaders
+    rules: rules
   },
   plugins: [
-    new ExtractTextPlugin(PAGE + '.style.css'),
+    new ExtractTextPlugin({
+      filename: PAGE + '.style.css',
+      disable: process.env.NODE_ENV === 'development'
+    }),
     new HtmlWebpackPlugin(ConfigHtml),
   ],
-  sassLoader: {
-    data: `$slideshow_num: ${fs.readdirSync(path.resolve(__dirname, 'src/datas/index/slideshow')).length};`
-  }
 }

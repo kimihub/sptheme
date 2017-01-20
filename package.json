@@ -10,7 +10,7 @@
     "build-index": "NODE_ENV=production webpack --config ./webpack.config.build.js",
     "build-about": "PAGE=about npm run build-index",
     "build-publications": "PAGE=publications npm run build-index",
-    "build": "npm run build-index; npm run build-about; npm run build-publications"
+    "build": "node lib/clean.js; npm run build-index; npm run build-about; npm run build-publications"
   },
   "devDependencies": {
     "autoprefixer": "^6.6",
@@ -20,22 +20,19 @@
     "babel-preset-es2015": "^6.18",
     "babel-preset-stage-0": "^6.16",
     "browserslist": "^1.5",
-    "css-loader": "^0.25",
-    "extract-text-webpack-plugin": "^1.0",
+    "css-loader": "^0.26",
+    "extract-text-webpack-plugin": "^2.0.0-beta.5",
     "file-loader": "^0.9",
-    "html-webpack-plugin": "^2.24",
-    "json-loader": "^0.5.4",
-    "node-sass": "^3.13",
+    "html-webpack-plugin": "^2.26",
+    "node-sass": "^4.3",
     "postcss-loader": "^1.2",
     "preact": "^6.4",
-    "resolve-url-loader": "^1.6",
-    "sass-loader": "^4.0",
+    "sass-loader": "^4.1",
     "style-loader": "^0.13",
-    "text-to-svg": "^3.1",
     "url-loader": "^0.5",
-    "webpack": "^1.13",
-    "webpack-dev-server": "^1.16",
-    "yaml-loader": "^0.4.0"
+    "webpack": "^2.2",
+    "webpack-dev-server": "^2.2",
+    "yaml-loader": "^0.4"
   },
   "dependencies": {},
   "browserslist": {

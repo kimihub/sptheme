@@ -1,4 +1,4 @@
-const {OccurrenceOrderPlugin, UglifyJsPlugin} = require('webpack').optimize
+const {LoaderOptionsPlugin, optimize} = require('webpack')
 const ConfigBase = require('./webpack.config.base')
 
 /*// Polyfills
@@ -8,12 +8,11 @@ ConfigBase.entry = [
 ].concat(ConfigBase.entry)*/
 ConfigBase.devtool = 'cheap-module-source-map'
 ConfigBase.plugins = ConfigBase.plugins.concat([
-  new OccurrenceOrderPlugin(),
-  new UglifyJsPlugin({
-    compressor: {
-      screw_ie8: true,
-      warnings: false
-    }
+  new LoaderOptionsPlugin({
+    minimize: true
+  }),
+  new optimize.UglifyJsPlugin({
+    sourceMap: true
   })
 ])
 
