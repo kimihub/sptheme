@@ -45,6 +45,7 @@ export default class Team extends Component {
                 ))}
                 </ul>
               </div>
+              <hr />
             </article>
           ))}
           </div>

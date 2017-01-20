@@ -37,12 +37,13 @@
 
 .fanzines {
   .cover {
-    max-width: 500px;  
+    @include box-shadow;
+    max-width: 500px;
     width: 240px;
 
     @media (#{$bp-larger-than-phablet}) {
       float: right;
-      padding: 10px 0 10px 20px;
+      margin: 10px 0 10px 20px;
       width: 35%;
     }
 

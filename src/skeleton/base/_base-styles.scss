@@ -30,8 +30,7 @@ a {
 //––––––––––––––––––––––––––––––––––––––––––––––––––
 
 hr {
-  margin-top: 3rem;
-  margin-bottom: 3.5rem;
-  border-width: 0;
-  border-top: 1px solid lighten($primary-color, 50%);
+  border: 0;
+  height: 1px;
+  background-image: linear-gradient(to right, rgba(0, 0, 0, 0), lighten($primary-color, 50%), rgba(0, 0, 0, 0));
 }

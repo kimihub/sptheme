@@ -2,7 +2,9 @@
 	background-color: $link-color;
 	color: $font-color-light;
 	padding-top: 25px;
+  position: relative;
 	text-align: center;
+  z-index: 11;
 
 	a.button {
 		border-color: $font-color-light;

@@ -2,6 +2,7 @@
   $max-width: 700px;
   text-align: center;
   padding: 25px 0;
+  background: $font-color-light;
 
   .home-title {
     text-transform: uppercase;
@@ -12,7 +13,7 @@
   }
 
   .production {
-      margin-bottom: 30px;
+      margin-bottom: 15px;
 
     .preview {
       @include box-shadow;

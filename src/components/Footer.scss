@@ -1,10 +1,12 @@
 .footer {
-  background-color: $primary-color;
-  border-top: $dark-grey solid 1px;
+  background-color: $secondary-color;
+  border-top: $dark-grey solid 3px;
+  box-shadow: 0 1px 15px 0 rgba(0,0,0,.5);
   color: $light-grey;
   font-size: 0.7em;
   position: relative;
   text-align: center;
+  z-index: 11px;
   .container::before {
     background-image: url(../assets/kitsu.png);
     background-repeat: no-repeat;
