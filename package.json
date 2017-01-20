@@ -1,4 +1,16 @@
 {
+  "main": "server.js",
+  "engines": {
+    "node": ">=4"
+  },
+  "scripts": {
+    "svg": "node ./lib/svg.js",
+    "dev": "NODE_ENV=development webpack-dev-server --config ./webpack.config.dev.js",
+    "build-index": "NODE_ENV=production webpack --config ./webpack.config.build.js",
+    "build-about": "PAGE=about npm run build-index",
+    "build-publications": "PAGE=publications npm run build-index",
+    "build": "npm run build-index; npm run build-about; npm run build-publications"
+  },
   "devDependencies": {
     "autoprefixer": "^6.6",
     "babel-core": "^6.18",
@@ -25,15 +37,6 @@
     "yaml-loader": "^0.4.0"
   },
   "dependencies": {},
-  "scripts": {
-    "svg": "node ./lib/svg.js",
-    "test": "node ./lib/server.js",
-    "dev": "NODE_ENV=development webpack-dev-server --config ./webpack.config.dev.js",
-    "build-index": "NODE_ENV=production webpack --config ./webpack.config.build.js",
-    "build-about": "PAGE=about npm run build-index",
-    "build-publications": "PAGE=publications npm run build-index",
-    "build": "npm run build-index; npm run build-about; npm run build-publications"
-  },
   "browserslist": {
     "development": [
       "last 2 versions"

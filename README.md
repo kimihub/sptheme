@@ -26,10 +26,10 @@ Run
 
 
 
-## Test Server for build
+## Start a static server and serve builds
 
 
-		(PORT=8080) npm run test
+		(PORT=8080) npm start
 
 
 ## SVG Text Generator
