@@ -2,6 +2,7 @@
 
 import {h} from 'preact';
 import Header from '../components/Header';
+import Intro from '../components/Intro';
 import Team from '../components/Team';
 
 const requireAll = require('../../lib/require-all');
@@ -11,6 +12,7 @@ const members = requireAll(require.context('../datas/about/team', false, /\.(yml
 module.exports = () => (
   <div class="page">
 		<Header cover={page.image} title="À propos" back={{href: window.routes['/'], text: 'Retour à l\'accueil'}} />
-		<Team header={page.header} footer={page.footer} members={members} />
+		<Intro text={page.intro} />
+    <Team header={page.header} footer={page.footer} members={members} />
 	</div>
 );
