@@ -4,10 +4,6 @@ import { h, Component } from 'preact';
 
 export default class Nav extends Component {
 
-	constructor(props) {
-		super(props);
-	}
-
 	displayHref(link) {
 
 		if (link.type == 'email') {

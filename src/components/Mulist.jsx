@@ -9,8 +9,8 @@ export default class Mulist extends Component {
     if (!props.title) {
       props.title = mulist.title;
     }
-    if (!props.action) {
-      props.action = mulist.action;
+    if (!props.url) {
+      props.url = mulist.url;
     }
     super(props);
   }
@@ -40,7 +40,7 @@ export default class Mulist extends Component {
         });
       }
     });
-    xhr.open('POST', this.props.action, true);
+    xhr.open('POST', this.props.url, true);
     //xhr.setRequestHeader('Accept', '');
     //xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
     //xhr.setRequestHeader('Content-Length', Buffer.byteLength(formData));
@@ -69,13 +69,13 @@ export default class Mulist extends Component {
     });
   }
 
-  render ({action, title}, {state, disabledSubmit, disabledField}) { 
+  render ({url, title}, {state, disabledSubmit, disabledField}) { 
     return (
       <section className="mulist">
         <div className="container">
           <h4>{title}</h4>
-          <form className="submitter" action={action} onSubmit={this.handleSubmit.bind(this)}>
-            <input placeholder="@email" className={state} value={this.state.email} disabled={disabledField} onFocus={this.handleFocus.bind(this)} onChange={this.handleChange.bind(this)} type="email" name="email" />
+          <form className="submitter" action={url} onSubmit={this.handleSubmit.bind(this)}>
+            <input placeholder="Email" className={state} value={this.state.email} disabled={disabledField} onFocus={this.handleFocus.bind(this)} onChange={this.handleChange.bind(this)} type="email" name="email" />
             <input type="submit" className={state} disabled={disabledSubmit} value="&nbsp;" />
           </form>
         </div>

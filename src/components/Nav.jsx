@@ -4,12 +4,9 @@ import { h, Component } from 'preact';
 
 export default class Nav extends Component {
 
-	constructor(props) {
-		super(props);
-    this.state = {
-      show: ''
-    }
-	}
+	state = {
+    show: false
+  }
 
 	displayHref(link) {
 
@@ -24,13 +21,13 @@ export default class Nav extends Component {
 	}
 
   handleClick(e) {
-    if (this.state.show === 'show') {
+    if (this.state.show) {
       this.setState({
-        show: ''
+        show: false
       })
     } else {
       this.setState({
-        show: 'show'
+        show: true
       })
     }
   }
@@ -45,7 +42,7 @@ export default class Nav extends Component {
 
   render({links, mobilehide}, {show}) {
     return (
-      <nav className={`${(mobilehide? 'mobilehide':'')} ${show}`}>
+      <nav className={`${mobilehide? 'mobilehide':''}${show? ' show':''}`}>
         {this.displayToggle()}
         <ul className="links">
       		{links.map(link => (

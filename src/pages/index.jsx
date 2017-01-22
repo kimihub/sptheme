@@ -10,7 +10,7 @@ const page = requireAll(require.context('../datas/index', false, /\.(yml|gif|png
 const publications = requireAll(require.context('../datas/index/home', false, /\.(yml|gif|png|jpe?g)$/i), true);
 const slides = requireAll(require.context('../datas/index/slideshow', false, /\.(gif|png|jpe?g)$/i));
 
-module.exports = () => (
+export default () => (
   <div class="page">
     <Slideshow slides={slides} />
     <Intro text={page.intro} link={{name: 'En savoir plus', href: window.routes['/about.html']}} />

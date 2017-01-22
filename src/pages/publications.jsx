@@ -11,7 +11,7 @@ const artbooks = requireAll(require.context('../datas/publications/artbooks', fa
 const figurines = requireAll(require.context('../datas/publications/figurines', false, /\.(yml|gif|png|jpe?g)$/i), true);
 const fanzines = requireAll(require.context('../datas/publications/fanzines', false, /\.(yml|gif|png|jpe?g)$/i), true);
 
-module.exports = () => (
+export default () => (
   <div class="page">
     <Header title="Publications" back={{href: window.routes['/'], text: 'Retour à l\'accueil'}} />
     <Intro text={page.intro} />

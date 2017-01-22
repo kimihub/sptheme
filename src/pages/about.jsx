@@ -9,7 +9,7 @@ const requireAll = require('../../lib/require-all');
 const page = requireAll(require.context('../datas/about', false, /\.(yml|gif|png|jpe?g)$/i), true).shift();
 const members = requireAll(require.context('../datas/about/team', false, /\.(yml|gif|png|jpe?g)$/i), true);
 
-module.exports = () => (
+export default () => (
   <div class="page">
 		<Header cover={page.image} title="À propos" back={{href: window.routes['/'], text: 'Retour à l\'accueil'}} />
 		<Intro text={page.intro} />
