@@ -12,6 +12,9 @@ export default class Mulist extends Component {
     if (!props.url) {
       props.url = mulist.url;
     }
+    if (!props.button) {
+      props.button = mulist.button? mulist.button:'';
+    }
     super(props);
   }
 
@@ -69,7 +72,17 @@ export default class Mulist extends Component {
     });
   }
 
-  render ({url, title}, {state, disabledSubmit, disabledField}) { 
+  render ({url, title, button}, {state, disabledSubmit, disabledField}) { 
+    if (button) {
+      return (
+        <section className="mulist">
+          <div className="container">
+            <h4>{title}</h4>
+            <p><a href={url} className="button add" target="_blank">{button}</a></p> 
+          </div>
+        </section>
+      );
+    }
     return (
       <section className="mulist">
         <div className="container">
