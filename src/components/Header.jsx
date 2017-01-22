@@ -4,11 +4,30 @@ import { h, Component } from 'preact';
 import { title } from '../../webpack.config.html'
 
 export default class Header extends Component {
-
-  constructor(props) {
-    super(props);
-  }
   
+  state = {
+    cover: ''
+  }
+
+  componentWillMount () {
+    if (this.props.cover) {
+      let img = new Image();
+      img.onload = e => {
+        this.onloadImage();
+      };
+      img.src = this.props.cover;
+      if (img.complete) {
+        this.onloadImage();
+      }
+    };
+  }
+
+  onloadImage () {
+    this.setState({
+      cover: {backgroundImage: `url(${this.props.cover}`}
+    })
+  }
+
   displayBack() {
     if (this.props.back) {
       return (
@@ -25,7 +44,7 @@ export default class Header extends Component {
     }
   }
 
-  render({children, cover}) {
+  render({children}, state) {
     if (children.length > 0) {
       return (
        <section className="header">
@@ -34,7 +53,7 @@ export default class Header extends Component {
       )
     }
     return (
-    	<section className="header cover" style={cover?{backgroundImage: `url(${cover}`}:''}>
+    	<section className="header cover" style={state.cover}>
         <div className="mask">
           <div className="container">
             <h1><a className="header-logo" href="/" title={title}><span className="access-text">{title}</span></a></h1>
