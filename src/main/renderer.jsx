@@ -26,7 +26,7 @@ const Main = () => (
     <Header>
       <Nav links={links} mobilehide={true} />
     </Header>
-    <Router>
+    <Router onChange={window.scrollTo.bind(null, 0, 0)}>
       <Index default path={window.routes['/']} />
       <About path={window.routes['/about.html']} />
       <Publications path={window.routes['/publications.html']} />

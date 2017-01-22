@@ -7,7 +7,7 @@ export default ({text, link}) => {
 		<section className="intro">
 			<div className="container">
 			 <p>{text}</p>
-			 {link? h('p', {className:'more'}, h('a', {href: link.href, className: 'button', onclick: window.scrollTo.bind(null, 0, 0)}, link.name)):<div></div>}
+			 {link? h('p', {className:'more'}, h('a', {href: link.href, className: 'button'}, link.name)):<div></div>}
 			</div>
 		</section>
 	);
