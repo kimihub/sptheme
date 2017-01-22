@@ -20,43 +20,76 @@ export default class Mulist extends Component {
 
   state = {
     state: 'add',
-    disabledSubmit: false,
-    disabledField: false
+    disabledSubmit: '',
+    disabledField: ''
   }
 
-  handleSubmit (e) {
-    e.preventDefault();
-    let xhr, formData, self;
-    formData = new FormData();
-    formData.append('email', this.state.email);   
-    /*xhr = new XMLHttpRequest();
+  handleSubmit (event) {
+    let xhr, onfail, self;
+    
     self = this;
-    xhr.addEventListener('load', function(e) {
-      if (this.responseText.errors) {
-        self.setState({
-          notifications: "Error: " + this.responseText.errors
-        });
+
+    event.preventDefault();
+
+    if (this.state.email.trim() === '') {
+      return;
+    }
+
+    this.setState({
+      disabledField: true,
+      disabledSubmit: true,
+      state:'load',
+    });
+      
+    xhr = new XMLHttpRequest();
+
+    xhr.onreadystatechange = () => {
+      if(xhr.readyState === XMLHttpRequest.DONE) {
+        try {
+          xhr.responseJSON = JSON.parse(xhr.responseText);
+        } catch(e) {
+          xhr.responseJSON = null;
+        }
       }
-      if (this.responseText.data) {
+    };
+
+    xhr.addEventListener('load', function () {
+      self.setState({
+        disabledField: ''
+      });
+
+      if (this.status === 200) {
         self.setState({
-          notifications: this.responseText.data + " submitted with success"
+          state: 'checked'
         });
+      } else {
+        
+        if (this.responseJSON.message === 'wrong email') {
+          self.setState({
+            state: 'error'
+          });
+        }
+        else {
+          self.setState({
+            state: 'checked'
+          });
+        }
       }
     });
-    xhr.open('POST', this.props.url, true);
-    //xhr.setRequestHeader('Accept', '');
-    //xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-    //xhr.setRequestHeader('Content-Length', Buffer.byteLength(formData));
-    xhr.send(formData);*/
-    fetchJsonp('https://mulist-http-kimi-dev.44fs.preview.openshiftapps.com/add', {
-      method: 'post',
-      headers: {
-      'Accept': '*/*',
-      'Content-Length': Buffer.byteLength(formData),
-      'Content-Type': 'multipart/form-data; charset=utf-8'
-      },
-      body: formData
-    });
+
+    onfail = () => {
+      this.setState({
+        disabledField: '',
+        disabledSubmit: '',
+        state: 'add',
+      });
+    };
+
+    xhr.addEventListener('abort', onfail);
+    xhr.addEventListener('error', onfail);
+    xhr.addEventListener('timeout', onfail);
+    xhr.open('POST', this.props.url + '/add');
+    xhr.send('email=' + this.state.email);
   }
 
   handleChange(e) {
@@ -67,7 +100,7 @@ export default class Mulist extends Component {
 
   handleFocus(e) {
     this.setState({
-      disabledSubmit: false,
+      disabledSubmit: '',
       state: 'add',
     });
   }

@@ -1,7 +1,6 @@
 const path = require('path')
 const fs = require('fs')
 const ConfigHtml = require('./webpack.config.html')
-const ProvidePlugin = require('webpack').ProvidePlugin
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
 
@@ -62,8 +61,6 @@ fs.readdirSync(path.resolve(__dirname, 'src/pages')).forEach(filename => {
 module.exports = {
   target: 'web',
   entry: [
-    'es6-promise/auto', // ie < 12 && Old Mobile Browsers
-    'fetch-jsonp',
     './src/main/style',
     './src/main/renderer',
   ],
@@ -78,11 +75,6 @@ module.exports = {
     rules: rules
   },
   plugins: [
-    new ProvidePlugin({
-      'Promise': 'es6-promise/auto',
-      'fetch': 'imports-loader?this=>global!exports-loader?global.fetch!whatwg-fetch',
-      'fetchJsonp': 'imports-loader?this=>global!exports-loader?global.fetch!fetch-jsonp',
-    }),
     new ExtractTextPlugin({
       filename: 'style.css',
       disable: process.env.NODE_ENV === 'development'

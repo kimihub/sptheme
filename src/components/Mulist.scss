@@ -59,6 +59,7 @@
     border-bottom-left-radius: 0;
     border-color: lighten($tertiary-color, 5%); 
     border-top-left-radius: 0;
+    font-size: 12px;
 
     &.checked {
       background-color: lighten($tertiary-color, 5%) !important;
